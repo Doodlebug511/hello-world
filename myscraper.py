@@ -14,7 +14,7 @@ soup = BeautifulSoup(r.text, 'html.parser')
 #soup = BeautifulSoup(r.text, 'lxml.parser') #will need a pip install of lxml first
 #soup = BeautifulSoup(r.text, 'html5lib.parser') #pip install of html5lib first
 
-records = []  #main container for soup object
+records = []  #main container for soup object   
 
 records.append(soup.find('title').text) #adding title text to records array
 records.append(' ')                     #adding spacer between texts for readability 
@@ -30,7 +30,7 @@ for results1 in soup.find_all('li', itemprop='ingredients'): #list of ingredient
     print(results1.text)
     ingredients.append(results1.text)
     records.append(results1.text)
-records.append(' ')    
+records.append(' ')     
 
 directions = []
 for results in soup.find_all('p'):  #list of instructions
