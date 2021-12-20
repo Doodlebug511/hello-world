@@ -1,5 +1,4 @@
-# after python install, pip install these 2 libraries from the command prompt
-# while online then import as shown
+# basic web page scraper as final project for bootcamp...
 
 import requests
 from bs4 import BeautifulSoup
@@ -8,8 +7,8 @@ import pandas as pd
 # bring desired webpage into python and create soup object via beautifulsoup
 
 url = 'https://pauladeen.com/recipe/mashed-potatoes-with-sautaed-mushrooms/'
-# url = 'https://pauladeen.com/recipe/fried-bacon-mashed-potatoes/'
-# url = 'https://pauladeen.com/recipe/shrimp-mashed-potatoes/'
+# url = 'https://pauladeen.com/recipe/hash-brown-quiche/'
+# url = 'https://pauladeen.com/recipe/paulas-sugared-rose-parade-layer-cake/'
 r = requests.get(url)
 
 # different parsers for different websites and output, these are the main ones
@@ -32,6 +31,11 @@ records.append(' ')
 
 # print to see what I've got
 print(soup.find('title').text)
+
+# for title of saved csv file
+recipe_title = soup.find('title').text
+recipe_title = str(recipe_title) + '.csv'
+recipe_title = recipe_title.replace('|', '-')
 
 # url of image
 pic = soup.find('img', class_='img-fluid').get('data-src')
@@ -67,4 +71,4 @@ df = pd.DataFrame(records)
 records
 
 # send to folder of source file as .csv file, open with spreadsheet app(excel)
-df.to_csv('pdRecipies.csv', index=False, encoding='utf-8')
+df.to_csv(recipe_title, index=False, encoding='utf-8')
