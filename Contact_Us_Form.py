@@ -28,7 +28,7 @@ file_path = 'C:\\Users\\dad\\Desktop\\Contact Us\\excel.xlsx'
 if not os.path.isfile(file_path):
     xlwb = ox.Workbook(file_path)
     xlwb.save(filename = file_path)
-    
+
 xlwb = ox.load_workbook(file_path)
 '''
 
@@ -36,6 +36,7 @@ xlwb = ox.load_workbook(file_path)
 xlsheet = xlwb.active
 
 # define worksheet features...
+
 
 # set column widths for worksheet
 def excel():
@@ -92,12 +93,7 @@ def insert():
     # if no entries...
     if (name_field.get() == '' or
         email_field.get() == '' or
-        
-        # text boxes never truly empty, always has '\n'
-        # but not displayed
-        message_field.get(1.0) == '\n'
-        ):
-       
+            message_field.get(1.0) == '\n'):
         print('Please complete boxes with * ...no message recorded!')
 
     else:
@@ -117,8 +113,8 @@ def insert():
         xlsheet.cell(row=current_row + 1,
                      column=4).value = phone_no_field.get()[0:7]
         # text boxes are a little different...
-        xlsheet.cell(row=current_row + 1,
-                     column=5).value = bleach.clean(message_field.get(1.0, 'end')[0:250])
+        xlsheet.cell(row=current_row + 1, column=5).value = bleach.clean
+        (message_field.get(1.0, 'end')[0:250])
 
         # save to worksheet file
         xlwb.save(file_path)
@@ -137,7 +133,6 @@ if __name__ == '__main__':
     window = tk.Tk()
     window.title('Contact Us!!!')
 
-    
     # create frames and labels within for GUI objects
     frame1 = tk.Frame(master=window, width=550, height=80, borderwidth=1,
                       bg='orange')
